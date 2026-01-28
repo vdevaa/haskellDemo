@@ -1,4 +1,5 @@
 module MyLib (add, sub, fac) where
+import Data.ByteString (find)
 
 add :: Num a => a -> a -> a
 add x y = x + y
@@ -16,3 +17,8 @@ testAdd1 = if add 1 2 == 3
 
 runTests = do
     putStrLn testAdd1
+
+findElem x [] = False
+findElem x (y:ys) = if x == y
+    then True
+    else findElem x ys
