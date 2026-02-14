@@ -11,6 +11,37 @@ dropLs n ls@(x:xs)
     | n > 0 = dropLs (n - 1) xs
     | otherwise = ls
 
+-- Implement take
+
+takeList ::Int -> [a] -> [a]
+takeList n [] = []
+takeList n ls@(x:xs)
+    | n > 0 = x : takeList (n - 1) xs
+    | otherwise = []
+
+-- Implement splitByCondition
+
+splitByCondition :: (a -> Bool) -> [a] -> ([a], [a])
+splitByCondition _ [] = ([],[])
+splitByCondition n (x:xs)
+    | n x = (ys, x:zs)
+    | otherwise = (x:ys, zs)
+    where (ys, zs) = splitByCondition n xs
+
+-- Implement zipLists
+
+zipLists :: [a] -> [b] -> [(a,b)]
+zipLists [] _ = []
+zipLists _ [] = []
+zipLists (x:xs) (y:ys) = (x,y) : zipLists xs ys
+
+-- Implement interleaveLists
+interleaveLists :: [a] -> [a] -> [a]
+interleaveLists [] _ = []
+interleaveLists _ [] = []
+interleaveLists (x:xs) (y:ys) = x : y : interleaveLists xs ys
+
+
 --- Implement reseverse
 
 rev [] = []
